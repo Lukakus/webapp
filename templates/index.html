@@ -13,4 +13,8 @@
     {% endif %}
 </div>
 {{ wtf.quick_form(form) }}
+<script type="text/javascript">
+    var snd = new Audio("{{ url_for('static', filename='sound.mp3') }}");
+    snd.play();
+</script>
 {% endblock %}
