@@ -9,6 +9,12 @@
 {% endblock %}
 
 {% block navbar %}
+<script type="text/javascript">
+    function ongek() {
+        document.getElementById('blabla').style.display = "inline";
+        document.getElementById('bla').style.display = "none";
+    }
+</script>
 <div class="navbar navbar-inverse" role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -23,7 +29,8 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a href="/">Home</a></li>
-                <li><a href="{{ url_for('static', filename='dickbutt.png') }}"><b>DO <u>NOT</u> CLICK HERE!</b></a></li>
+                <li id="bla"><a href="#" target="" onclick="ongek()"><b>DO <u>NOT</u> CLICK HERE!</b></a></li>
+                <li id="blabla" style="display:none;"><a href="{{ url_for('static', filename='dickbutt.png') }}">I knew I coulnd't trust you! But now: DO <i>NOT</i> CLICK HERE!</a></li>
             </ul>
         </div>
     </div>

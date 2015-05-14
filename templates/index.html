@@ -13,6 +13,9 @@
     {% endif %}
 </div>
 {{ wtf.quick_form(form) }}
+<div class="page-body">
+    <br><p>Hello dear {% if name %}{{ name }}{% else %}unknown guy{% endif %}.<br> Here is a picture for you:</p><img src="{{ url_for('static', filename='darudefish.png') }}">
+</div>
 <script type="text/javascript">
     var snd = new Audio("{{ url_for('static', filename='sound.mp3') }}");
     snd.play();
