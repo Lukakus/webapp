@@ -110,6 +110,9 @@ def index():
     return render_template('index.html', form=form, name=session.get('name'),
                            known=session.get('known', False))
 
+@app.route('/dickbutt')
+def dickbutt():
+    return render_template('templates/dickbutt.html')
 
 if __name__ == '__main__':
     manager.run()
