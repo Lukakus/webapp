@@ -68,6 +68,9 @@ def index():
         return redirect(url_for('index'))
     return render_template('index.html', form=form, name=session.get('name'))
 
+@app.route('/dickbutt')
+def hallo():
+    return render_template('dickbutt.html')
 
 if __name__ == '__main__':
     db.create_all()
