@@ -79,6 +79,7 @@ def index():
 def hallo():
     return render_template('dickbutt.html', login=session.get('login'))
 
+# mycode
 @app.route('/logout')
 def logout():
     if session.get('login'):
@@ -90,12 +91,13 @@ def logout():
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        if form.uname.data == "Luca" and form.pword.data == "inDeeDsir":
-            flash('nice')
-            session['login'] = "Luca"
+        if form.uname.data == "informatik" and form.pword.data == "2020":
+            flash('you successfully logged in')
+            session['login'] = "informatik"
+            session['name'] = "informatik"
         else:
-            flash('failed')
             session.clear()
+            flash('username or password wrong')
         return redirect(url_for('login'))
     return render_template('login.html', login=session.get('login'), form=form, uname=form.uname.data, pword=form.pword.data)
 
