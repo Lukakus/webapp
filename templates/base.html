@@ -9,6 +9,7 @@
 {% endblock %}
 
 {% block navbar %}
+<!-- # mycode */ -->
 <script type="text/javascript">
     function ongek() {
         document.getElementById('blabla').style.display = "inline";
@@ -29,9 +30,15 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a href="/">Home</a></li>
+                <!-- # mycode */ -->
                 <li><a href="http://cariad.netai.net/">eine sehenswerte website.</a></li>
+                <!-- # mycode */ -->
                 <li id="bla"><a href="#" target="" onclick="ongek()"><b>DO <u>NOT</u> CLICK HERE!</b></a></li>
+                <!-- # mycode */ -->
                 <li id="blabla" style="display:none;"><a href="/dickbutt">I knew I coulnd't trust you! But now: DO <i>NOT</i> CLICK HERE!</a></li>
+
+                <!-- # mycode */ -->
+                {% if login %}<li><a href="/logout">logout</a></li>{% else %}<li><a href="/login">login</a></li>{% endif %}
             </ul>
         </div>
     </div>

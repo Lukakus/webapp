@@ -4,7 +4,7 @@ from flask.ext.script import Manager
 from flask.ext.bootstrap import Bootstrap
 from flask.ext.moment import Moment
 from flask.ext.wtf import Form
-from wtforms import StringField, SubmitField
+from wtforms import StringField, SubmitField, PasswordField
 from wtforms.validators import Required
 from flask.ext.sqlalchemy import SQLAlchemy
 
@@ -46,6 +46,12 @@ class NameForm(Form):
     name = StringField('What is your name?', validators=[Required()])
     submit = SubmitField('Submit')
 
+# mycode
+class LoginForm(Form):
+    uname = StringField('username')
+    pword = PasswordField('password')
+    submit = SubmitField('submit')
+
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -66,11 +72,32 @@ def index():
             flash('Looks like you have changed your name!')
         session['name'] = form.name.data
         return redirect(url_for('index'))
-    return render_template('index.html', form=form, name=session.get('name'))
+    return render_template('index.html', form=form, name=session.get('name'), login=session.get('login'))
 
+# mycode
 @app.route('/dickbutt')
 def hallo():
-    return render_template('dickbutt.html')
+    return render_template('dickbutt.html', login=session.get('login'))
+
+@app.route('/logout')
+def logout():
+    if session.get('login'):
+        session.clear()
+    return redirect(url_for('index'))
+
+# mycode
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        if form.uname.data == "Luca" and form.pword.data == "inDeeDsir":
+            flash('nice')
+            session['login'] = "Luca"
+        else:
+            flash('failed')
+            session.clear()
+        return redirect(url_for('login'))
+    return render_template('login.html', login=session.get('login'), form=form, uname=form.uname.data, pword=form.pword.data)
 
 if __name__ == '__main__':
     db.create_all()
